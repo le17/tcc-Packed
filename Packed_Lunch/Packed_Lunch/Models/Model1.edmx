@@ -1,0 +1,703 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Packed_Lunch_4_1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cardapio">
+          <Key>
+            <PropertyRef Name="Id_Cardapio" />
+          </Key>
+          <Property Name="Id_Cardapio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Data_Fim" Type="date" />
+          <Property Name="Data_ini" Type="date" />
+          <Property Name="Id_Restaurante_fk" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Packed_Lunch_4_1.dbo.Compoem' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Compoem">
+          <Property Name="Id_Cardapio_fk" Type="int" />
+          <Property Name="Id_Produto_fk" Type="int" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Packed_Lunch_4_1.dbo.Cria' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Cria">
+          <Property Name="Marca_Registrada" Type="varchar" MaxLength="255" />
+          <Property Name="Id_Restaurante_fk" Type="int" />
+          <Property Name="Id_Produto_fk" Type="int" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Packed_Lunch_4_1.dbo.Emprega' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Emprega">
+          <Property Name="Id_Empresa_fk" Type="int" />
+          <Property Name="Id_Pessoa_fk" Type="int" />
+        </EntityType>-->
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="Id_Empresa" />
+          </Key>
+          <Property Name="Id_Empresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cnpj" Type="char" MaxLength="14" />
+          <Property Name="Nome" Type="varchar" MaxLength="255" />
+          <Property Name="Endereco" Type="varchar" MaxLength="450" />
+          <Property Name="Cidade" Type="varchar" MaxLength="400" />
+          <Property Name="Telefone" Type="char" MaxLength="20" />
+          <Property Name="Login" Type="varchar" MaxLength="255" />
+          <Property Name="Senha" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Entrega">
+          <Key>
+            <PropertyRef Name="Id_Entrega" />
+          </Key>
+          <Property Name="Id_Entrega" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_pedido_fk" Type="int" />
+          <Property Name="Id_entregador_fk" Type="int" />
+        </EntityType>
+        <EntityType Name="Entregador">
+          <Key>
+            <PropertyRef Name="Id_Entregador" />
+          </Key>
+          <Property Name="Id_Entregador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cpf" Type="char" MaxLength="11" />
+          <Property Name="Nome" Type="varchar" MaxLength="255" />
+          <Property Name="Login" Type="varchar" MaxLength="255" />
+          <Property Name="Senha" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Packed_Lunch_4_1.dbo.Faz_Convenio' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Faz_Convenio">
+          <Property Name="Contrato" Type="varchar" MaxLength="255" />
+          <Property Name="Data_Ini" Type="date" />
+          <Property Name="Data_Fim" Type="date" />
+          <Property Name="Id_Restaurante_fk" Type="int" />
+          <Property Name="Id_Empresa_fk" Type="int" />
+        </EntityType>-->
+        <EntityType Name="Horario_limite">
+          <Key>
+            <PropertyRef Name="Id_Horario" />
+          </Key>
+          <Property Name="Id_Horario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="hora_Limite" Type="time" Precision="7" />
+          <Property Name="hora_entrega" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="Id_Pedido" />
+          </Key>
+          <Property Name="Id_Pedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Data_pedido" Type="date" />
+          <Property Name="Total" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="Id_empresa_pedido_fk" Type="int" />
+        </EntityType>
+        <EntityType Name="Pessoa">
+          <Key>
+            <PropertyRef Name="Id_Pessoa" />
+          </Key>
+          <Property Name="Id_Pessoa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cpf" Type="char" MaxLength="11" />
+          <Property Name="Nome" Type="varchar" MaxLength="255" />
+          <Property Name="Login" Type="varchar" MaxLength="255" />
+          <Property Name="Senha" Type="varchar" MaxLength="255" />
+          <Property Name="Id_empresa_fk" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Packed_Lunch_4_1.dbo.Possui_1' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Possui_1">
+          <Property Name="Id_Horario_fk" Type="int" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Packed_Lunch_4_1.dbo.Possui_2' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Possui_2">
+          <Property Name="Qtd" Type="int" />
+          <Property Name="Observacao" Type="varchar" MaxLength="255" />
+          <Property Name="Id_Produto_fk" Type="int" />
+          <Property Name="Id_Pedido_fk" Type="int" />
+        </EntityType>-->
+        <EntityType Name="Produto">
+          <Key>
+            <PropertyRef Name="Id_Produto" />
+          </Key>
+          <Property Name="Id_Produto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descricao" Type="varchar" MaxLength="255" />
+          <Property Name="Nome" Type="varchar" MaxLength="255" />
+          <Property Name="Valor" Type="decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="Restaurante">
+          <Key>
+            <PropertyRef Name="Id_Restaurante" />
+          </Key>
+          <Property Name="Id_Restaurante" Type="int" Nullable="false" />
+          <Property Name="Cnpj" Type="char" MaxLength="14" />
+          <Property Name="Nome" Type="varchar" MaxLength="255" />
+          <Property Name="Endereco" Type="varchar" MaxLength="450" />
+          <Property Name="Cidade" Type="varchar" MaxLength="400" />
+          <Property Name="Telefone" Type="char" MaxLength="20" />
+          <Property Name="Login" Type="varchar" MaxLength="255" />
+          <Property Name="Senha" Type="varchar" MaxLength="255" />
+          <Property Name="Id_horario_fk" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+error 6004: The table 'Packed_Lunch_4_1.dbo.Compoem' is referenced by a relationship, but cannot be found.
+        <Association Name="Id_cardapio_fk0" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'Packed_Lunch_4_1.dbo.Emprega' is referenced by a relationship, but cannot be found.
+        <Association Name="Id_Empresa_fk1" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'Packed_Lunch_4_1.dbo.Faz_Convenio' is referenced by a relationship, but cannot be found.
+        <Association Name="Id_empresa_fk2" />-->
+        <Association Name="Id_Empresa_fk4">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="0..1" />
+          <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="Id_Empresa" />
+            </Principal>
+            <Dependent Role="Pessoa">
+              <PropertyRef Name="Id_empresa_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Id_empresa_pedido_fk">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="0..1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="Id_Empresa" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="Id_empresa_pedido_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Id_entregador_fk0">
+          <End Role="Entregador" Type="Self.Entregador" Multiplicity="0..1" />
+          <End Role="Entrega" Type="Self.Entrega" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entregador">
+              <PropertyRef Name="Id_Entregador" />
+            </Principal>
+            <Dependent Role="Entrega">
+              <PropertyRef Name="Id_entregador_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Id_horario_fk0">
+          <End Role="Horario_limite" Type="Self.Horario_limite" Multiplicity="0..1" />
+          <End Role="Restaurante" Type="Self.Restaurante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Horario_limite">
+              <PropertyRef Name="Id_Horario" />
+            </Principal>
+            <Dependent Role="Restaurante">
+              <PropertyRef Name="Id_horario_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'Packed_Lunch_4_1.dbo.Possui_1' is referenced by a relationship, but cannot be found.
+        <Association Name="Id_Horario_fk1" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'Packed_Lunch_4_1.dbo.Possui_2' is referenced by a relationship, but cannot be found.
+        <Association Name="Id_pedido_fk0" />-->
+        <Association Name="Id_pedido_fk1">
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="0..1" />
+          <End Role="Entrega" Type="Self.Entrega" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="Id_Pedido" />
+            </Principal>
+            <Dependent Role="Entrega">
+              <PropertyRef Name="Id_pedido_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'Packed_Lunch_4_1.dbo.Emprega' is referenced by a relationship, but cannot be found.
+        <Association Name="Id_Pessoa_fk0" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'Packed_Lunch_4_1.dbo.Compoem' is referenced by a relationship, but cannot be found.
+        <Association Name="Id_produto_fk0" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'Packed_Lunch_4_1.dbo.Possui_2' is referenced by a relationship, but cannot be found.
+        <Association Name="Id_produto_fk1" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'Packed_Lunch_4_1.dbo.Cria' is referenced by a relationship, but cannot be found.
+        <Association Name="Id_produto_fk2" />-->
+        <Association Name="Id_restaurante_fk0">
+          <End Role="Restaurante" Type="Self.Restaurante" Multiplicity="0..1" />
+          <End Role="Cardapio" Type="Self.Cardapio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurante">
+              <PropertyRef Name="Id_Restaurante" />
+            </Principal>
+            <Dependent Role="Cardapio">
+              <PropertyRef Name="Id_Restaurante_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'Packed_Lunch_4_1.dbo.Cria' is referenced by a relationship, but cannot be found.
+        <Association Name="Id_restaurante_fk1" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'Packed_Lunch_4_1.dbo.Faz_Convenio' is referenced by a relationship, but cannot be found.
+        <Association Name="Id_restaurante_fk2" />-->
+        <Function Name="Select_empresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id_empresa" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Select_pedidos_empresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id_empresa" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="Packed_Lunch_4_1ModelStoreContainer">
+          <EntitySet Name="Cardapio" EntityType="Self.Cardapio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empresa" EntityType="Self.Empresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Entrega" EntityType="Self.Entrega" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Entregador" EntityType="Self.Entregador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Horario_limite" EntityType="Self.Horario_limite" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pessoa" EntityType="Self.Pessoa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Produto" EntityType="Self.Produto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Restaurante" EntityType="Self.Restaurante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Id_Empresa_fk4" Association="Self.Id_Empresa_fk4">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Pessoa" EntitySet="Pessoa" />
+          </AssociationSet>
+          <AssociationSet Name="Id_empresa_pedido_fk" Association="Self.Id_empresa_pedido_fk">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="Id_entregador_fk0" Association="Self.Id_entregador_fk0">
+            <End Role="Entregador" EntitySet="Entregador" />
+            <End Role="Entrega" EntitySet="Entrega" />
+          </AssociationSet>
+          <AssociationSet Name="Id_horario_fk0" Association="Self.Id_horario_fk0">
+            <End Role="Horario_limite" EntitySet="Horario_limite" />
+            <End Role="Restaurante" EntitySet="Restaurante" />
+          </AssociationSet>
+          <AssociationSet Name="Id_pedido_fk1" Association="Self.Id_pedido_fk1">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="Entrega" EntitySet="Entrega" />
+          </AssociationSet>
+          <AssociationSet Name="Id_restaurante_fk0" Association="Self.Id_restaurante_fk0">
+            <End Role="Restaurante" EntitySet="Restaurante" />
+            <End Role="Cardapio" EntitySet="Cardapio" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Packed_Lunch_4_1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cardapio">
+          <Key>
+            <PropertyRef Name="Id_Cardapio" />
+          </Key>
+          <Property Name="Id_Cardapio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Data_Fim" Type="DateTime" Precision="0" />
+          <Property Name="Data_ini" Type="DateTime" Precision="0" />
+          <Property Name="Id_Restaurante_fk" Type="Int32" />
+          <NavigationProperty Name="Restaurante" Relationship="Self.Id_restaurante_fk0" FromRole="Cardapio" ToRole="Restaurante" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="Id_Empresa" />
+          </Key>
+          <Property Name="Id_Empresa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cnpj" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="Nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Endereco" Type="String" MaxLength="450" FixedLength="false" Unicode="false" />
+          <Property Name="Cidade" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="Telefone" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="Login" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Senha" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Pessoas" Relationship="Self.Id_Empresa_fk4" FromRole="Empresa" ToRole="Pessoa" />
+          <NavigationProperty Name="Pedidoes" Relationship="Self.Id_empresa_pedido_fk" FromRole="Empresa" ToRole="Pedido" />
+        </EntityType>
+        <EntityType Name="Entrega">
+          <Key>
+            <PropertyRef Name="Id_Entrega" />
+          </Key>
+          <Property Name="Id_Entrega" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_pedido_fk" Type="Int32" />
+          <Property Name="Id_entregador_fk" Type="Int32" />
+          <NavigationProperty Name="Entregador" Relationship="Self.Id_entregador_fk0" FromRole="Entrega" ToRole="Entregador" />
+          <NavigationProperty Name="Pedido" Relationship="Self.Id_pedido_fk1" FromRole="Entrega" ToRole="Pedido" />
+        </EntityType>
+        <EntityType Name="Entregador">
+          <Key>
+            <PropertyRef Name="Id_Entregador" />
+          </Key>
+          <Property Name="Id_Entregador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cpf" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="Nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Login" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Senha" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Entregas" Relationship="Self.Id_entregador_fk0" FromRole="Entregador" ToRole="Entrega" />
+        </EntityType>
+        <EntityType Name="Horario_limite">
+          <Key>
+            <PropertyRef Name="Id_Horario" />
+          </Key>
+          <Property Name="Id_Horario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="hora_Limite" Type="Time" Precision="7" />
+          <Property Name="hora_entrega" Type="Time" Precision="7" />
+          <NavigationProperty Name="Restaurantes" Relationship="Self.Id_horario_fk0" FromRole="Horario_limite" ToRole="Restaurante" />
+        </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="Id_Pedido" />
+          </Key>
+          <Property Name="Id_Pedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Data_pedido" Type="DateTime" Precision="0" />
+          <Property Name="Total" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Id_empresa_pedido_fk" Type="Int32" />
+          <NavigationProperty Name="Empresa" Relationship="Self.Id_empresa_pedido_fk" FromRole="Pedido" ToRole="Empresa" />
+          <NavigationProperty Name="Entregas" Relationship="Self.Id_pedido_fk1" FromRole="Pedido" ToRole="Entrega" />
+        </EntityType>
+        <EntityType Name="Pessoa">
+          <Key>
+            <PropertyRef Name="Id_Pessoa" />
+          </Key>
+          <Property Name="Id_Pessoa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cpf" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="Nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Login" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Senha" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Id_empresa_fk" Type="Int32" />
+          <NavigationProperty Name="Empresa" Relationship="Self.Id_Empresa_fk4" FromRole="Pessoa" ToRole="Empresa" />
+        </EntityType>
+        <EntityType Name="Produto">
+          <Key>
+            <PropertyRef Name="Id_Produto" />
+          </Key>
+          <Property Name="Id_Produto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Valor" Type="Decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="Restaurante">
+          <Key>
+            <PropertyRef Name="Id_Restaurante" />
+          </Key>
+          <Property Name="Id_Restaurante" Type="Int32" Nullable="false" />
+          <Property Name="Cnpj" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="Nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Endereco" Type="String" MaxLength="450" FixedLength="false" Unicode="false" />
+          <Property Name="Cidade" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="Telefone" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="Login" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Senha" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Id_horario_fk" Type="Int32" />
+          <NavigationProperty Name="Cardapios" Relationship="Self.Id_restaurante_fk0" FromRole="Restaurante" ToRole="Cardapio" />
+          <NavigationProperty Name="Horario_limite" Relationship="Self.Id_horario_fk0" FromRole="Restaurante" ToRole="Horario_limite" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="Id_restaurante_fk0">
+          <End Role="Restaurante" Type="Self.Restaurante" Multiplicity="0..1" />
+          <End Role="Cardapio" Type="Self.Cardapio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurante">
+              <PropertyRef Name="Id_Restaurante" />
+            </Principal>
+            <Dependent Role="Cardapio">
+              <PropertyRef Name="Id_Restaurante_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Id_Empresa_fk4">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="0..1" />
+          <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="Id_Empresa" />
+            </Principal>
+            <Dependent Role="Pessoa">
+              <PropertyRef Name="Id_empresa_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Id_empresa_pedido_fk">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="0..1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="Id_Empresa" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="Id_empresa_pedido_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Id_entregador_fk0">
+          <End Role="Entregador" Type="Self.Entregador" Multiplicity="0..1" />
+          <End Role="Entrega" Type="Self.Entrega" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entregador">
+              <PropertyRef Name="Id_Entregador" />
+            </Principal>
+            <Dependent Role="Entrega">
+              <PropertyRef Name="Id_entregador_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Id_pedido_fk1">
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="0..1" />
+          <End Role="Entrega" Type="Self.Entrega" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="Id_Pedido" />
+            </Principal>
+            <Dependent Role="Entrega">
+              <PropertyRef Name="Id_pedido_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Id_horario_fk0">
+          <End Role="Horario_limite" Type="Self.Horario_limite" Multiplicity="0..1" />
+          <End Role="Restaurante" Type="Self.Restaurante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Horario_limite">
+              <PropertyRef Name="Id_Horario" />
+            </Principal>
+            <Dependent Role="Restaurante">
+              <PropertyRef Name="Id_horario_fk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Packed_Lunch_4_1Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cardapios" EntityType="Self.Cardapio" />
+          <EntitySet Name="Empresas" EntityType="Self.Empresa" />
+          <EntitySet Name="Entregas" EntityType="Self.Entrega" />
+          <EntitySet Name="Entregadors" EntityType="Self.Entregador" />
+          <EntitySet Name="Horario_limite" EntityType="Self.Horario_limite" />
+          <EntitySet Name="Pedidoes" EntityType="Self.Pedido" />
+          <EntitySet Name="Pessoas" EntityType="Self.Pessoa" />
+          <EntitySet Name="Produtoes" EntityType="Self.Produto" />
+          <EntitySet Name="Restaurantes" EntityType="Self.Restaurante" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="Id_restaurante_fk0" Association="Self.Id_restaurante_fk0">
+            <End Role="Restaurante" EntitySet="Restaurantes" />
+            <End Role="Cardapio" EntitySet="Cardapios" />
+          </AssociationSet>
+          <AssociationSet Name="Id_Empresa_fk4" Association="Self.Id_Empresa_fk4">
+            <End Role="Empresa" EntitySet="Empresas" />
+            <End Role="Pessoa" EntitySet="Pessoas" />
+          </AssociationSet>
+          <AssociationSet Name="Id_empresa_pedido_fk" Association="Self.Id_empresa_pedido_fk">
+            <End Role="Empresa" EntitySet="Empresas" />
+            <End Role="Pedido" EntitySet="Pedidoes" />
+          </AssociationSet>
+          <AssociationSet Name="Id_entregador_fk0" Association="Self.Id_entregador_fk0">
+            <End Role="Entregador" EntitySet="Entregadors" />
+            <End Role="Entrega" EntitySet="Entregas" />
+          </AssociationSet>
+          <AssociationSet Name="Id_pedido_fk1" Association="Self.Id_pedido_fk1">
+            <End Role="Pedido" EntitySet="Pedidoes" />
+            <End Role="Entrega" EntitySet="Entregas" />
+          </AssociationSet>
+          <AssociationSet Name="Id_horario_fk0" Association="Self.Id_horario_fk0">
+            <End Role="Horario_limite" EntitySet="Horario_limite" />
+            <End Role="Restaurante" EntitySet="Restaurantes" />
+          </AssociationSet>
+          <FunctionImport Name="Select_empresa" ReturnType="Collection(Packed_Lunch_4_1Model.Select_empresa_Result)">
+            <Parameter Name="Id_empresa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Select_pedidos_empresa" ReturnType="Collection(Packed_Lunch_4_1Model.Select_pedidos_empresa_Result)">
+            <Parameter Name="Id_empresa" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="Select_empresa_Result">
+          <Property Type="String" Name="Cnpj" Nullable="true" MaxLength="14" />
+          <Property Type="String" Name="Nome" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Endereco" Nullable="true" MaxLength="450" />
+          <Property Type="String" Name="Cidade" Nullable="true" MaxLength="400" />
+          <Property Type="String" Name="Telefone" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="Select_pedidos_empresa_Result">
+          <Property Type="Int32" Name="Id_pedido" Nullable="false" />
+          <Property Type="Int32" Name="Qtd" Nullable="true" />
+          <Property Type="String" Name="Nome" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Descricao" Nullable="true" MaxLength="255" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Packed_Lunch_4_1ModelStoreContainer" CdmEntityContainer="Packed_Lunch_4_1Entities">
+          <EntitySetMapping Name="Cardapios">
+            <EntityTypeMapping TypeName="Packed_Lunch_4_1Model.Cardapio">
+              <MappingFragment StoreEntitySet="Cardapio">
+                <ScalarProperty Name="Id_Cardapio" ColumnName="Id_Cardapio" />
+                <ScalarProperty Name="Data_Fim" ColumnName="Data_Fim" />
+                <ScalarProperty Name="Data_ini" ColumnName="Data_ini" />
+                <ScalarProperty Name="Id_Restaurante_fk" ColumnName="Id_Restaurante_fk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empresas">
+            <EntityTypeMapping TypeName="Packed_Lunch_4_1Model.Empresa">
+              <MappingFragment StoreEntitySet="Empresa">
+                <ScalarProperty Name="Id_Empresa" ColumnName="Id_Empresa" />
+                <ScalarProperty Name="Cnpj" ColumnName="Cnpj" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+                <ScalarProperty Name="Cidade" ColumnName="Cidade" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Senha" ColumnName="Senha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Entregas">
+            <EntityTypeMapping TypeName="Packed_Lunch_4_1Model.Entrega">
+              <MappingFragment StoreEntitySet="Entrega">
+                <ScalarProperty Name="Id_Entrega" ColumnName="Id_Entrega" />
+                <ScalarProperty Name="Id_pedido_fk" ColumnName="Id_pedido_fk" />
+                <ScalarProperty Name="Id_entregador_fk" ColumnName="Id_entregador_fk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Entregadors">
+            <EntityTypeMapping TypeName="Packed_Lunch_4_1Model.Entregador">
+              <MappingFragment StoreEntitySet="Entregador">
+                <ScalarProperty Name="Id_Entregador" ColumnName="Id_Entregador" />
+                <ScalarProperty Name="Cpf" ColumnName="Cpf" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Senha" ColumnName="Senha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Horario_limite">
+            <EntityTypeMapping TypeName="Packed_Lunch_4_1Model.Horario_limite">
+              <MappingFragment StoreEntitySet="Horario_limite">
+                <ScalarProperty Name="Id_Horario" ColumnName="Id_Horario" />
+                <ScalarProperty Name="hora_Limite" ColumnName="hora_Limite" />
+                <ScalarProperty Name="hora_entrega" ColumnName="hora_entrega" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pedidoes">
+            <EntityTypeMapping TypeName="Packed_Lunch_4_1Model.Pedido">
+              <MappingFragment StoreEntitySet="Pedido">
+                <ScalarProperty Name="Id_Pedido" ColumnName="Id_Pedido" />
+                <ScalarProperty Name="Data_pedido" ColumnName="Data_pedido" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Id_empresa_pedido_fk" ColumnName="Id_empresa_pedido_fk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pessoas">
+            <EntityTypeMapping TypeName="Packed_Lunch_4_1Model.Pessoa">
+              <MappingFragment StoreEntitySet="Pessoa">
+                <ScalarProperty Name="Id_Pessoa" ColumnName="Id_Pessoa" />
+                <ScalarProperty Name="Cpf" ColumnName="Cpf" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Senha" ColumnName="Senha" />
+                <ScalarProperty Name="Id_empresa_fk" ColumnName="Id_empresa_fk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produtoes">
+            <EntityTypeMapping TypeName="Packed_Lunch_4_1Model.Produto">
+              <MappingFragment StoreEntitySet="Produto">
+                <ScalarProperty Name="Id_Produto" ColumnName="Id_Produto" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Restaurantes">
+            <EntityTypeMapping TypeName="Packed_Lunch_4_1Model.Restaurante">
+              <MappingFragment StoreEntitySet="Restaurante">
+                <ScalarProperty Name="Id_Restaurante" ColumnName="Id_Restaurante" />
+                <ScalarProperty Name="Cnpj" ColumnName="Cnpj" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+                <ScalarProperty Name="Cidade" ColumnName="Cidade" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Senha" ColumnName="Senha" />
+                <ScalarProperty Name="Id_horario_fk" ColumnName="Id_horario_fk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Packed_Lunch_4_1Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Select_empresa" FunctionName="Packed_Lunch_4_1Model.Store.Select_empresa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Packed_Lunch_4_1Model.Select_empresa_Result">
+                <ScalarProperty Name="Cnpj" ColumnName="Cnpj" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+                <ScalarProperty Name="Cidade" ColumnName="Cidade" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Select_pedidos_empresa" FunctionName="Packed_Lunch_4_1Model.Store.Select_pedidos_empresa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Packed_Lunch_4_1Model.Select_pedidos_empresa_Result">
+                <ScalarProperty Name="Id_pedido" ColumnName="Id_pedido" />
+                <ScalarProperty Name="Qtd" ColumnName="Qtd" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
