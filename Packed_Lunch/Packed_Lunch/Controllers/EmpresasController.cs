@@ -21,19 +21,29 @@ namespace Packed_Lunch.Controllers
         }
 
         // GET: Empresas/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Empresa empresa = db.Empresas.Find(id);
-            if (empresa == null)
-            {
-                return HttpNotFound();
-            }
-            return View(empresa);
+            
+                if (Session["CNPJUsuarioLogado"] != null)
+                {
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Login");
+                }
         }
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //Empresa empresa = db.Empresas.Find(id);
+            //if (empresa == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //return View(empresa);
+        
 
         // GET: Empresas/Create
         public ActionResult Create()
@@ -46,13 +56,13 @@ namespace Packed_Lunch.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id_Empresa,Cnpj,Nome,Endereco,Cidade,Telefone,Login,Senha")] Empresa empresa)
+        public ActionResult Create([Bind(Include = "Cnpj,Nome,Endereco,Cidade,Telefone,Login,Senha")] Empresa empresa)
         {
             if (ModelState.IsValid)
             {
                 db.Empresas.Add(empresa);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details");
             }
 
             return View(empresa);
@@ -123,6 +133,7 @@ namespace Packed_Lunch.Controllers
             }
             base.Dispose(disposing);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(Empresa u)
@@ -131,17 +142,16 @@ namespace Packed_Lunch.Controllers
             {
                 using (var db = new Packed_Lunch_4_1Entities()) // Nome do entity localizado no Empresa.Context
                 {
-
                     //var login = from a in db.empresas select a;
                     var v = db.Empresas.Where(a => a.Login.Equals(u.Login) && a.Senha.Equals(u.Senha)).FirstOrDefault();
                     if (v != null)
                     {
-                        if (v.Equals("Empresas"))
-                        {
-                            Session["Nome"] = v.Login.ToString();
-                            Session["Login"] = v.Login.ToString();
-                            return RedirectToAction("Details", "Empresas");
-                        }
+                 
+                            Session["CNPJUsuarioLogado"] = v.Cnpj.ToString();
+                            Session["NomedaEmpresa"] = v.Nome.ToString();
+                            return RedirectToAction("Details","Empresas");
+                        
+                        
                         ////if (v.func.Equals("func"))
                         //{
                         //    Session["nomeUsuarioLogado"] = v.login.ToString();
@@ -157,7 +167,9 @@ namespace Packed_Lunch.Controllers
 
         public ActionResult Login()
         {
+
             return View();
         }
+
     }
 }
