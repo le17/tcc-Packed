@@ -22,18 +22,15 @@ namespace Packed_Lunch.Controllers
         }
 
         // GET: Restaurantes/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details()
         {
-            if (id == null)
+            Empresa empresa = db.Empresas.Find(Session["IDUsuario"]);
+
+            if (Session["CNPJUsuarioLogado"] != null && empresa != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return View(empresa);
             }
-            Restaurante restaurante = db.Restaurantes.Find(id);
-            if (restaurante == null)
-            {
-                return HttpNotFound();
-            }
-            return View(restaurante);
+            return HttpNotFound();
         }
 
         // GET: Restaurantes/Create
@@ -73,8 +70,7 @@ namespace Packed_Lunch.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Id_horario_fk = new SelectList(db.Horario_limite, "Id_Horario", "Id_Horario", restaurante.Id_horario_fk);
-            return View(restaurante);
+            return View();
         }
 
         // POST: Restaurantes/Edit/5
@@ -143,8 +139,9 @@ namespace Packed_Lunch.Controllers
                     {
                         if (v.Equals("Restaurantes"))
                         {
-                            Session["Nome"] = v.Login.ToString();
-                            Session["Login"] = v.Login.ToString();
+                            Session["IDUsuario"] = v.Id_Restaurante;
+                            Session["CNPJUsuarioLogado"] = v.Cnpj.ToString();
+                            Session["NomedaEmpresa"] = v.Nome.ToString();
                             return RedirectToAction("Details", "Restaurantes");
                         }
                         ////if (v.func.Equals("func"))

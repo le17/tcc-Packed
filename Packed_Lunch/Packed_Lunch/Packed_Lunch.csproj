@@ -137,6 +137,8 @@
     <Compile Include="Controllers\EmpresasController.cs" />
     <Compile Include="Controllers\EntregadorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PedidoesController.cs" />
+    <Compile Include="Controllers\PessoasController.cs" />
     <Compile Include="Controllers\RestaurantesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -267,6 +269,17 @@
     <Content Include="Views\Empresas\Login.cshtml" />
     <Content Include="Views\Entregadors\Login.cshtml" />
     <Content Include="Views\Restaurantes\Login.cshtml" />
+    <Content Include="Views\Pessoas\Delete.cshtml" />
+    <Content Include="Views\Pessoas\Details.cshtml" />
+    <Content Include="Views\Pessoas\Edit.cshtml" />
+    <Content Include="Views\Pessoas\Index.cshtml" />
+    <Content Include="Views\Pessoas\Create.cshtml" />
+    <Content Include="Views\Pessoas\Login.cshtml" />
+    <Content Include="Views\Pedidoes\Create.cshtml" />
+    <Content Include="Views\Pedidoes\Delete.cshtml" />
+    <Content Include="Views\Pedidoes\Details.cshtml" />
+    <Content Include="Views\Pedidoes\Edit.cshtml" />
+    <Content Include="Views\Pedidoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

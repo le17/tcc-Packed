@@ -12,7 +12,20 @@ namespace Packed_Lunch.Controllers
 {
     public class EmpresasController : Controller
     {
+        public char[] Cnpj;
+        public int Id_empresa;
+
         private Packed_Lunch_4_1Entities db = new Packed_Lunch_4_1Entities();
+        private object cnpj;
+
+        public EmpresasController(object cnpj)
+        {
+            this.cnpj = cnpj;
+        }
+
+        public EmpresasController()
+        {
+        }
 
         // GET: Empresas
         public ActionResult Index()
@@ -23,15 +36,13 @@ namespace Packed_Lunch.Controllers
         // GET: Empresas/Details/5
         public ActionResult Details()
         {
+            Empresa empresa = db.Empresas.Find(Session["IDUsuario"]);
             
-                if (Session["CNPJUsuarioLogado"] != null)
-                {
-                    return View();
-                }
-                else
-                {
-                    return RedirectToAction("Login");
-                }
+            if (Session["CNPJUsuarioLogado"] != null && empresa != null)
+            {
+                return View(empresa);
+            }
+            return HttpNotFound();
         }
             //if (id == null)
             //{
@@ -62,7 +73,7 @@ namespace Packed_Lunch.Controllers
             {
                 db.Empresas.Add(empresa);
                 db.SaveChanges();
-                return RedirectToAction("Details");
+                return RedirectToAction("Login");
             }
 
             return View(empresa);
@@ -136,7 +147,7 @@ namespace Packed_Lunch.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(Empresa u)
+        public ActionResult Login(Empresa u,object sender,EventArgs e)
         {
             if (ModelState.IsValid)
             {
@@ -144,11 +155,18 @@ namespace Packed_Lunch.Controllers
                 {
                     //var login = from a in db.empresas select a;
                     var v = db.Empresas.Where(a => a.Login.Equals(u.Login) && a.Senha.Equals(u.Senha)).FirstOrDefault();
+                                    
+                    //Id_empresa = v.Id_Empresa;
+                    Cnpj = v.Cnpj.ToCharArray();
+                    TempData["Id_empresa"] = v.Id_Empresa;
+                    TempData["Id_empresa_log"] = v.Id_Empresa;
                     if (v != null)
                     {
-                 
+                            Session["IDUsuario"] = v.Id_Empresa;
                             Session["CNPJUsuarioLogado"] = v.Cnpj.ToString();
                             Session["NomedaEmpresa"] = v.Nome.ToString();
+                            
+
                             return RedirectToAction("Details","Empresas");
                         
                         
@@ -171,5 +189,6 @@ namespace Packed_Lunch.Controllers
             return View();
         }
 
+       
     }
 }

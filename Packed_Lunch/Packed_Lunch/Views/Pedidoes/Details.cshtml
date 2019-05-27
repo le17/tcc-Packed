@@ -1,0 +1,43 @@
+﻿@model Packed_Lunch.Models.Pedido
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Pedido</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Data_pedido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data_pedido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Empresa.Cnpj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empresa.Cnpj)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Pedido }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

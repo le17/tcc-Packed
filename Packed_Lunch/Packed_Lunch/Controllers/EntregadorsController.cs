@@ -21,18 +21,15 @@ namespace Packed_Lunch.Controllers
         }
 
         // GET: Entregadors/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details()
         {
-            if (id == null)
+            Entregador entregador = db.Entregadors.Find(Session["IDUsuario"]);
+
+            if (Session["CPFUsuarioLogado"] != null && entregador != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return View(entregador);
             }
-            Entregador entregador = db.Entregadors.Find(id);
-            if (entregador == null)
-            {
-                return HttpNotFound();
-            }
-            return View(entregador);
+            return HttpNotFound();
         }
 
         // GET: Entregadors/Create
@@ -52,7 +49,7 @@ namespace Packed_Lunch.Controllers
             {
                 db.Entregadors.Add(entregador);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Login");
             }
 
             return View(entregador);
@@ -84,7 +81,7 @@ namespace Packed_Lunch.Controllers
             {
                 db.Entry(entregador).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details");
             }
             return View(entregador);
         }
@@ -138,8 +135,9 @@ namespace Packed_Lunch.Controllers
                     {
                         if (v.Equals("Entregador"))
                         {
-                            Session["Nome"] = v.Login.ToString();
-                            Session["Login"] = v.Login.ToString();
+                            Session["IDUsuario"] = v.Id_Entregador;
+                            Session["CPFUsuarioLogado"] = v.Cpf.ToString();
+                            Session["NomedaEmpresa"] = v.Nome.ToString();
                             return RedirectToAction("Details", "Entregadors");
                         }
                         ////if (v.func.Equals("func"))
