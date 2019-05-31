@@ -139,8 +139,9 @@ namespace Packed_Lunch.Controllers
                     {
                         if (v.Equals("Restaurantes"))
                         {
-                            Session["IDUsuario"] = v.Id_Restaurante;
-                            Session["CNPJUsuarioLogado"] = v.Cnpj.ToString();
+                            TempData["Id_restaurante"] = v.Id_Restaurante;
+                            Session["IDRestaurante"] = v.Id_Restaurante;
+                            Session["CNPJRestauranteLogado"] = v.Cnpj.ToString();
                             Session["NomedaEmpresa"] = v.Nome.ToString();
                             return RedirectToAction("Details", "Restaurantes");
                         }

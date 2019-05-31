@@ -118,7 +118,7 @@ namespace Packed_Lunch.Controllers
             //id_empresa_logada = Convert.ToInt32(id_logado);
             if (ModelState.IsValid)
             {
-                //pessoa.Id_empresa_fk = id_empresa;
+                
                 db.Pessoas.Add(pessoa);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -37,6 +37,9 @@ namespace Packed_Lunch.Models
         public virtual DbSet<Produto> Produtoes { get; set; }
         public virtual DbSet<Restaurante> Restaurantes { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Possui2> Possuis { get; set; }
+        public virtual DbSet<Compoem> Compoems { get; set; }
+
     
         public virtual ObjectResult<Select_empresa_Result> Select_empresa(Nullable<int> id_empresa)
         {
