@@ -154,6 +154,7 @@ namespace Packed_Lunch.Controllers
                 using (var db = new Packed_Lunch_4_1Entities()) // Nome do entity localizado no Empresa.Context
                 {
                     //var login = from a in db.empresas select a;
+
                     var v = db.Empresas.Where(a => a.Login.Equals(u.Login) && a.Senha.Equals(u.Senha)).FirstOrDefault();
                                     
                     //Id_empresa = v.Id_Empresa;

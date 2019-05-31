@@ -44,7 +44,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Empresa.Cnpj)
+            @Html.LabelFor(model => model.Id_empresa_fk,"CNPJ Empresa", htmlAttributes: new { @class = "control-label col-md-2" })
         </dt>
 
         <dd>
@@ -55,5 +55,5 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Pessoa }) |
-    @Html.ActionLink("Create","Pedidoes")
+    @Html.ActionLink("Realizar pedido","Create","Pedidoes")
 </p>

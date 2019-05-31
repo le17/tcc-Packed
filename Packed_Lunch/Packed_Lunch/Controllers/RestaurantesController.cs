@@ -17,7 +17,7 @@ namespace Packed_Lunch.Controllers
         // GET: Restaurantes
         public ActionResult Index()
         {
-            var restaurantes = db.Restaurantes.Include(r => r.Horario_limite);
+            var restaurantes = db.Restaurantes;
             return View(restaurantes.ToList());
         }
 
@@ -36,7 +36,7 @@ namespace Packed_Lunch.Controllers
         // GET: Restaurantes/Create
         public ActionResult Create()
         {
-            ViewBag.Id_horario_fk = new SelectList(db.Horario_limite, "Id_Horario", "Id_Horario");
+            //ViewBag.Id_horario_fk = new SelectList(db.Horario_limite, "Id_Horario", "Id_Horario");
             return View();
         }
 
@@ -51,7 +51,7 @@ namespace Packed_Lunch.Controllers
             {
                 db.Restaurantes.Add(restaurante);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Login");
             }
 
             ViewBag.Id_horario_fk = new SelectList(db.Horario_limite, "Id_Horario", "Id_Horario", restaurante.Id_horario_fk);
@@ -113,7 +113,7 @@ namespace Packed_Lunch.Controllers
             Restaurante restaurante = db.Restaurantes.Find(id);
             db.Restaurantes.Remove(restaurante);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Create");
         }
 
         protected override void Dispose(bool disposing)
@@ -144,11 +144,7 @@ namespace Packed_Lunch.Controllers
                             Session["NomedaEmpresa"] = v.Nome.ToString();
                             return RedirectToAction("Details", "Restaurantes");
                         }
-                        ////if (v.func.Equals("func"))
-                        //{
-                        //    Session["nomeUsuarioLogado"] = v.login.ToString();
-                        //    return RedirectToAction("funcionario", "Usuario");
-                        //}
+                        
                     }
                 }
 

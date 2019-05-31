@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using Packed_Lunch.Models;
 
+
 namespace Packed_Lunch.Controllers
 {
     public class PessoasController : Controller
@@ -18,31 +19,55 @@ namespace Packed_Lunch.Controllers
         private Packed_Lunch_4_1Entities db = new Packed_Lunch_4_1Entities();
 
         // GET: Pessoas
-        public ActionResult Index(Pessoa u, Empresa e,int id)
+        public ActionResult Index()
         {
-            if (ModelState.IsValid)
+            var id_empresa_log = TempData["Id_empresa_log"];
+            int log = Convert.ToInt32(id_empresa_log);
+            if (id_empresa_log != null)
             {
-                using (var db = new Packed_Lunch_4_1Entities()) // Nome do entity localizado no Empresa.Context
-                {
-                    var log = TempData["Id_empresa_log"];
-                    id_empresa_logada = Convert.ToInt32(log);
-                    
-                    if (log == null)
-                    {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                    }
-                    Pessoa pessoa = db.Pessoas.Find(id);
-                    //if (pessoa.Id_empresa_fk = id_empresa_logada)
-                    //    return View(db.Pessoas.ToList().Where(u.Id_empresa_fk == id_empresa_logada));
-
-                    return View(pessoa);
-
-                    
-                   
-                }
+                var func = from f in db.Pessoas
+                           orderby f.Id_Pessoa
+                           where f.Id_empresa_fk == log
+                           select f;
+                return View(func);
             }
             return HttpNotFound();
         }
+//            if (ModelState.IsValid)
+//            {
+////                using (var db = new Packed_Lunch_4_1Entities()) // Nome do entity localizado no Empresa.Context
+////                {
+////                    var log = TempData["Id_empresa_log"];
+////                    id_empresa_logada = Convert.ToInt32(log);
+                    
+
+
+////                    if (log == null)
+////                    {
+////                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+////                    }
+
+////                    Pessoa funcionarios = db.Pessoas.Find(e.Id_Pessoa);
+
+////                    if (e.Id_empresa_fk == u.Id_Empresa && u.Id_Empresa == id_empresa_logada )
+////                    {
+//////                        Pessoa funcionarios = db.Pessoas.Find(e.Id_Pessoa);
+
+
+////                        return View(funcionarios);
+////                    }
+                     
+//                    //if (pessoa.Id_empresa_fk = id_empresa_logada)
+//                    //    return View(db.Pessoas.ToList().Where(u.Id_empresa_fk == id_empresa_logada));
+
+
+
+
+
+//                }
+//            }
+            
+      //  }
 
 
 
@@ -96,7 +121,7 @@ namespace Packed_Lunch.Controllers
                 //pessoa.Id_empresa_fk = id_empresa;
                 db.Pessoas.Add(pessoa);
                 db.SaveChanges();
-                return RedirectToAction("details","Empresas");
+                return RedirectToAction("Index");
             }
 
             
