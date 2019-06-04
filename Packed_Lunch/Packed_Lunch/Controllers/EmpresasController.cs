@@ -30,7 +30,7 @@ namespace Packed_Lunch.Controllers
         // GET: Empresas
         public ActionResult Index()
         {
-            return View(db.Empresas.ToList());
+            return View(db.Restaurantes.ToList());
         }
 
         // GET: Empresas/Details/5

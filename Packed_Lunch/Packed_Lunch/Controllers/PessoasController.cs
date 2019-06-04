@@ -98,13 +98,7 @@ namespace Packed_Lunch.Controllers
             return View();
         }
 
-
-
-
-
-
-
-        
+    
 
         // POST: Pessoas/Create
         // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
@@ -140,7 +134,7 @@ namespace Packed_Lunch.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Id_empresa_fk = new SelectList(db.Empresas, "Id_Empresa", "Cnpj", pessoa.Id_empresa_fk);
+            ViewBag.Id_empresa_fk = new SelectList(db.Restaurantes, "Id_Empresa", "Cnpj", pessoa.Id_empresa_fk);
             return View(pessoa);
         }
 
@@ -157,7 +151,7 @@ namespace Packed_Lunch.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Id_empresa_fk = new SelectList(db.Empresas, "Id_Empresa", "Cnpj", pessoa.Id_empresa_fk);
+            ViewBag.Id_empresa_fk = new SelectList(db.Restaurantes, "Id_Empresa", "Cnpj", pessoa.Id_empresa_fk);
             return View(pessoa);
         }
 

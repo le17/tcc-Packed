@@ -1,15 +1,15 @@
 ﻿@model Packed_Lunch.Models.Restaurante
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalhes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Restaurante</h4>
-    <hr />
+<h2 style="color:aliceblue">Detalhes do restaurante</h2>
+<hr />
+<div class="form-horizontal" style="display:block;background-color:#d5d5d5;color:black;border-radius:4%;width:48%" >
+   
+    
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Cnpj)
@@ -67,19 +67,15 @@
             @Html.DisplayFor(model => model.Senha)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Horario_limite.Id_Horario)
-        </dt>
+        
 
-        <dd>
-            @Html.DisplayFor(model => model.Horario_limite.Id_Horario)
-        </dd>
+        
 
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id_Restaurante }) |
    
-    @Html.ActionLink("'Criar cardapio", "viewModel")
+    @Html.ActionLink("'Criar cardapio", "Create","cardapioViewModel")
     
 </p>

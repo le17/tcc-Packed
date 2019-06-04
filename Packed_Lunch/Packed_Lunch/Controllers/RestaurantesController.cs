@@ -17,18 +17,18 @@ namespace Packed_Lunch.Controllers
         // GET: Restaurantes
         public ActionResult Index()
         {
-            var restaurantes = db.Restaurantes;
-            return View(restaurantes.ToList());
+            var restaurante = db.Restaurantes;
+            return View(restaurante.ToList());
         }
 
         // GET: Restaurantes/Details/5
         public ActionResult Details()
         {
-            Empresa empresa = db.Empresas.Find(Session["IDUsuario"]);
+            Restaurante restaurante = db.Restaurantes.Find(Session["IDRestaurante"]);
 
-            if (Session["CNPJUsuarioLogado"] != null && empresa != null)
+            if (Session["CNPJRestauranteLogado"] != null && restaurante != null)
             {
-                return View(empresa);
+                return View(restaurante);
             }
             return HttpNotFound();
         }
@@ -45,7 +45,7 @@ namespace Packed_Lunch.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id_Restaurante,Cnpj,Nome,Endereco,Cidade,Telefone,Login,Senha,Id_horario_fk")] Restaurante restaurante)
+        public ActionResult Create([Bind(Include = "Cnpj,Nome,Endereco,Cidade,Telefone,Login,Senha,Id_horario_fk")] Restaurante restaurante)
         {
             if (ModelState.IsValid)
             {
@@ -137,14 +137,14 @@ namespace Packed_Lunch.Controllers
                     var v = db.Restaurantes.Where(a => a.Login.Equals(u.Login) && a.Senha.Equals(u.Senha)).FirstOrDefault();
                     if (v != null)
                     {
-                        if (v.Equals("Restaurantes"))
-                        {
+                        
+                        
                             TempData["Id_restaurante"] = v.Id_Restaurante;
                             Session["IDRestaurante"] = v.Id_Restaurante;
                             Session["CNPJRestauranteLogado"] = v.Cnpj.ToString();
                             Session["NomedaEmpresa"] = v.Nome.ToString();
                             return RedirectToAction("Details", "Restaurantes");
-                        }
+                        
                         
                     }
                 }

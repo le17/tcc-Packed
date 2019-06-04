@@ -127,7 +127,7 @@ warning 6013: The table/view 'Packed_Lunch_4_1.dbo.Possui_2' does not have a pri
           <Key>
             <PropertyRef Name="Id_Restaurante" />
           </Key>
-          <Property Name="Id_Restaurante" Type="int" Nullable="false" />
+          <Property Name="Id_Restaurante" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Cnpj" Type="char" MaxLength="14" />
           <Property Name="Nome" Type="varchar" MaxLength="255" />
           <Property Name="Endereco" Type="varchar" MaxLength="450" />
@@ -390,7 +390,7 @@ error 6004: The table 'Packed_Lunch_4_1.dbo.Faz_Convenio' is referenced by a rel
           <Key>
             <PropertyRef Name="Id_Restaurante" />
           </Key>
-          <Property Name="Id_Restaurante" Type="Int32" Nullable="false" />
+          <Property Name="Id_Restaurante" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Cnpj" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
           <Property Name="Nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Endereco" Type="String" MaxLength="450" FixedLength="false" Unicode="false" />

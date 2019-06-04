@@ -39,7 +39,7 @@ namespace Packed_Lunch.Controllers
         // GET: Pedidoes/Create
         public ActionResult Create()
         {
-            ViewBag.Id_empresa_pedido_fk = new SelectList(db.Empresas, "Id_Empresa", "Cnpj");
+            ViewBag.Id_empresa_pedido_fk = new SelectList(db.Restaurantes, "Id_Empresa", "Cnpj");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace Packed_Lunch.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Id_empresa_pedido_fk = new SelectList(db.Empresas, "Id_Empresa", "Cnpj", pedido.Id_empresa_pedido_fk);
+            ViewBag.Id_empresa_pedido_fk = new SelectList(db.Restaurantes, "Id_Empresa", "Cnpj", pedido.Id_empresa_pedido_fk);
             return View(pedido);
         }
 
@@ -73,7 +73,7 @@ namespace Packed_Lunch.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Id_empresa_pedido_fk = new SelectList(db.Empresas, "Id_Empresa", "Cnpj", pedido.Id_empresa_pedido_fk);
+            ViewBag.Id_empresa_pedido_fk = new SelectList(db.Restaurantes, "Id_Empresa", "Cnpj", pedido.Id_empresa_pedido_fk);
             return View(pedido);
         }
 
@@ -90,7 +90,7 @@ namespace Packed_Lunch.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Id_empresa_pedido_fk = new SelectList(db.Empresas, "Id_Empresa", "Cnpj", pedido.Id_empresa_pedido_fk);
+            ViewBag.Id_empresa_pedido_fk = new SelectList(db.Restaurantes, "Id_Empresa", "Cnpj", pedido.Id_empresa_pedido_fk);
             return View(pedido);
         }
 

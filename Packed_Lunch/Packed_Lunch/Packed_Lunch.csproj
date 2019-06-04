@@ -209,6 +209,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imagens\foto01.jpg" />
+    <Content Include="Imagens\foto02.jpg" />
+    <Content Include="Imagens\foto03.jpg" />
+    <Content Include="Imagens\foto04.jpg" />
+    <Content Include="Imagens\foto05.jpg" />
+    <Content Include="Imagens\foto06.jpg" />
+    <Content Include="Imagens\frango grelhado.jpg" />
+    <Content Include="Imagens\fundo.png" />
+    <Content Include="Imagens\fundo2.png" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

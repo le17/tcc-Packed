@@ -2,16 +2,23 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>Packed Lunch</h1>
-    <p class="lead">Packed Lunch desenvolvendo soluções inteligentes e ageis para fornecimento de alimentos para seus colaboradores.</p>
-    @Html.ActionLink("Saiba mais", "About", "Home", new { area = "" }, new { @class = "btn btn-primary btn-lg" })
-</div>
 
-<div class="row">
+    <div class="container">
+        <h1 style="color:black">Packed Lunch</h1>
+        <div class="jumbotron" style="background-color:darkgray">
+            <p class="lead" style="color:black">Desenvolvendo soluções inteligentes e ageis para fornecimento de alimentos para seus colaboradores.</p>
+            @Html.ActionLink("Saiba mais", "About", "Home", new { area = "" }, new { @class = "btn btn-primary btn-lg" })
+        </div>
+        
+    </div>
+    
+
+
+<div class="row" style="color:black">
+
     <div class="col-md-4">
-        <h2>Cadastre sua empresa</h2>
-        <p>
+        <h2 style="text-decoration:solid">Cadastre sua empresa</h2>
+        <p style="font-size:140%">
             Agilize o fornecimento de alimtos para sua equipe e diminua a fadiga de seus
             colaboradores com incessantes deslocamentos no horário de almoço.
         </p>
@@ -19,12 +26,17 @@
     </div>
     <div class="col-md-4">
         <h2>Cadastre seu restaurante</h2>
-        <p>Caso tenha um restaurante e queira se tornar um fornecedor cadastre-se.</p>
+        <p style="font-size:140%">Caso tenha um restaurante e queira se tornar um fornecedor cadastre-se.</p>
+        <br />
+        <br />
+        <br />
         @Html.ActionLink("Cadastro restaurante", "Create", "Restaurantes", new { area = "" }, new { @class = "btn btn-primary btn-lg" })
     </div>
     <div class="col-md-4">
         <h2>Entregadores</h2>
-        <p>Quer trabalhar como autonomo e fazer entregas com sua moto faça seu cadastro.</p>
+        <p style="font-size:140%">Quer trabalhar como autonomo e fazer entregas com sua moto faça seu cadastro.</p>
+        <br />
+        
         @Html.ActionLink("Cadastro entregador", "Create", "Entregadors", new { area = "" }, new { @class = "btn btn-primary btn-lg" })
     </div>
 </div>
