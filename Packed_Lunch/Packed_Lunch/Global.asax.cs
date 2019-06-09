@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Packed_Lunch.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +16,11 @@ namespace Packed_Lunch
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            ModelBinders.Binders.Add(
+                typeof(decimal), new DecimalModelBinder());
+           
+
         }
     }
 }

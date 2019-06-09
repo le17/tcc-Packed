@@ -22,21 +22,32 @@
             Agilize o fornecimento de alimtos para sua equipe e diminua a fadiga de seus
             colaboradores com incessantes deslocamentos no horário de almoço.
         </p>
-        @Html.ActionLink("Cadastro empresa", "Create", "Empresas", new { area = "" }, new { @class = "btn btn-primary btn-lg" })
+        <div >
+            @Html.ActionLink("Cadastro empresa", "Create", "Empresas", new { area = "" }, new { @class = "btn btn-primary btn-lg" })
+        </div>
+        
     </div>
     <div class="col-md-4">
         <h2>Cadastre seu restaurante</h2>
-        <p style="font-size:140%">Caso tenha um restaurante e queira se tornar um fornecedor cadastre-se.</p>
-        <br />
-        <br />
-        <br />
-        @Html.ActionLink("Cadastro restaurante", "Create", "Restaurantes", new { area = "" }, new { @class = "btn btn-primary btn-lg" })
+        <p style="font-size:140%">Caso tenha um restaurante e queira se tornar um fornecedor cadastre-se.
+        </p>
+        <br/>
+        <br/>
+        <br/>
+        <div>
+            @Html.ActionLink("Cadastro restaurante", "Create", "Restaurantes", new { area = "" }, new { @class = "btn btn-primary btn-lg" })
+        </div>
+        
     </div>
     <div class="col-md-4">
         <h2>Entregadores</h2>
-        <p style="font-size:140%">Quer trabalhar como autonomo e fazer entregas com sua moto faça seu cadastro.</p>
-        <br />
+        <p style="font-size:140%">Quer trabalhar como autonomo e fazer entregas com sua moto faça seu cadastro.
+        </p>
         
-        @Html.ActionLink("Cadastro entregador", "Create", "Entregadors", new { area = "" }, new { @class = "btn btn-primary btn-lg" })
+        <br/>
+        <div>
+            @Html.ActionLink("Cadastro entregador", "Create", "Entregadors", new { area = "" }, new { @class = "btn btn-primary btn-lg" })
+        </div>
+        
     </div>
 </div>

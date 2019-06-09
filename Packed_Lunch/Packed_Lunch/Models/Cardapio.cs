@@ -26,6 +26,8 @@ public partial class Cardapio
 
     public Nullable<int> Id_Restaurante_fk { get; set; }
 
+    public string Dia_semana { get; set; }
+
 
 
     public virtual Restaurante Restaurante { get; set; }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Packed_Lunch_4_1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Packed_Lunch_4_1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cardapio">
           <Key>
             <PropertyRef Name="Id_Cardapio" />
@@ -13,25 +13,13 @@
           <Property Name="Data_Fim" Type="date" />
           <Property Name="Data_ini" Type="date" />
           <Property Name="Id_Restaurante_fk" Type="int" />
+          <Property Name="Dia_semana" Type="varchar" MaxLength="30" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6013: The table/view 'Packed_Lunch_4_1.dbo.Compoem' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Compoem">
           <Property Name="Id_Cardapio_fk" Type="int" />
           <Property Name="Id_Produto_fk" Type="int" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'Packed_Lunch_4_1.dbo.Cria' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Cria">
-          <Property Name="Marca_Registrada" Type="varchar" MaxLength="255" />
-          <Property Name="Id_Restaurante_fk" Type="int" />
-          <Property Name="Id_Produto_fk" Type="int" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'Packed_Lunch_4_1.dbo.Emprega' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Emprega">
-          <Property Name="Id_Empresa_fk" Type="int" />
-          <Property Name="Id_Pessoa_fk" Type="int" />
         </EntityType>-->
         <EntityType Name="Empresa">
           <Key>
@@ -64,15 +52,6 @@ warning 6013: The table/view 'Packed_Lunch_4_1.dbo.Emprega' does not have a prim
           <Property Name="Login" Type="varchar" MaxLength="255" />
           <Property Name="Senha" Type="varchar" MaxLength="255" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'Packed_Lunch_4_1.dbo.Faz_Convenio' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Faz_Convenio">
-          <Property Name="Contrato" Type="varchar" MaxLength="255" />
-          <Property Name="Data_Ini" Type="date" />
-          <Property Name="Data_Fim" Type="date" />
-          <Property Name="Id_Restaurante_fk" Type="int" />
-          <Property Name="Id_Empresa_fk" Type="int" />
-        </EntityType>-->
         <EntityType Name="Horario_limite">
           <Key>
             <PropertyRef Name="Id_Horario" />
@@ -102,11 +81,6 @@ warning 6013: The table/view 'Packed_Lunch_4_1.dbo.Faz_Convenio' does not have a
           <Property Name="Id_empresa_fk" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6013: The table/view 'Packed_Lunch_4_1.dbo.Possui_1' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Possui_1">
-          <Property Name="Id_Horario_fk" Type="int" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
 warning 6013: The table/view 'Packed_Lunch_4_1.dbo.Possui_2' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Possui_2">
           <Property Name="Qtd" Type="int" />
@@ -127,7 +101,7 @@ warning 6013: The table/view 'Packed_Lunch_4_1.dbo.Possui_2' does not have a pri
           <Key>
             <PropertyRef Name="Id_Restaurante" />
           </Key>
-          <Property Name="Id_Restaurante" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Restaurante" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Cnpj" Type="char" MaxLength="14" />
           <Property Name="Nome" Type="varchar" MaxLength="255" />
           <Property Name="Endereco" Type="varchar" MaxLength="450" />
@@ -150,12 +124,6 @@ warning 6013: The table/view 'Packed_Lunch_4_1.dbo.Possui_2' does not have a pri
         <!--Errors Found During Generation:
 error 6004: The table 'Packed_Lunch_4_1.dbo.Compoem' is referenced by a relationship, but cannot be found.
         <Association Name="Id_cardapio_fk0" />-->
-        <!--Errors Found During Generation:
-error 6004: The table 'Packed_Lunch_4_1.dbo.Emprega' is referenced by a relationship, but cannot be found.
-        <Association Name="Id_Empresa_fk1" />-->
-        <!--Errors Found During Generation:
-error 6004: The table 'Packed_Lunch_4_1.dbo.Faz_Convenio' is referenced by a relationship, but cannot be found.
-        <Association Name="Id_empresa_fk2" />-->
         <Association Name="Id_Empresa_fk4">
           <End Role="Empresa" Type="Self.Empresa" Multiplicity="0..1" />
           <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="*" />
@@ -205,9 +173,6 @@ error 6004: The table 'Packed_Lunch_4_1.dbo.Faz_Convenio' is referenced by a rel
           </ReferentialConstraint>
         </Association>
         <!--Errors Found During Generation:
-error 6004: The table 'Packed_Lunch_4_1.dbo.Possui_1' is referenced by a relationship, but cannot be found.
-        <Association Name="Id_Horario_fk1" />-->
-        <!--Errors Found During Generation:
 error 6004: The table 'Packed_Lunch_4_1.dbo.Possui_2' is referenced by a relationship, but cannot be found.
         <Association Name="Id_pedido_fk0" />-->
         <Association Name="Id_pedido_fk1">
@@ -223,17 +188,11 @@ error 6004: The table 'Packed_Lunch_4_1.dbo.Possui_2' is referenced by a relatio
           </ReferentialConstraint>
         </Association>
         <!--Errors Found During Generation:
-error 6004: The table 'Packed_Lunch_4_1.dbo.Emprega' is referenced by a relationship, but cannot be found.
-        <Association Name="Id_Pessoa_fk0" />-->
-        <!--Errors Found During Generation:
 error 6004: The table 'Packed_Lunch_4_1.dbo.Compoem' is referenced by a relationship, but cannot be found.
         <Association Name="Id_produto_fk0" />-->
         <!--Errors Found During Generation:
 error 6004: The table 'Packed_Lunch_4_1.dbo.Possui_2' is referenced by a relationship, but cannot be found.
         <Association Name="Id_produto_fk1" />-->
-        <!--Errors Found During Generation:
-error 6004: The table 'Packed_Lunch_4_1.dbo.Cria' is referenced by a relationship, but cannot be found.
-        <Association Name="Id_produto_fk2" />-->
         <Association Name="Id_restaurante_fk0">
           <End Role="Restaurante" Type="Self.Restaurante" Multiplicity="0..1" />
           <End Role="Cardapio" Type="Self.Cardapio" Multiplicity="*" />
@@ -246,12 +205,6 @@ error 6004: The table 'Packed_Lunch_4_1.dbo.Cria' is referenced by a relationshi
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-error 6004: The table 'Packed_Lunch_4_1.dbo.Cria' is referenced by a relationship, but cannot be found.
-        <Association Name="Id_restaurante_fk1" />-->
-        <!--Errors Found During Generation:
-error 6004: The table 'Packed_Lunch_4_1.dbo.Faz_Convenio' is referenced by a relationship, but cannot be found.
-        <Association Name="Id_restaurante_fk2" />-->
         <Function Name="Select_empresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Id_empresa" Type="int" Mode="In" />
         </Function>
@@ -294,8 +247,7 @@ error 6004: The table 'Packed_Lunch_4_1.dbo.Faz_Convenio' is referenced by a rel
             <End Role="Cardapio" EntitySet="Cardapio" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Packed_Lunch_4_1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -308,6 +260,7 @@ error 6004: The table 'Packed_Lunch_4_1.dbo.Faz_Convenio' is referenced by a rel
           <Property Name="Data_ini" Type="DateTime" Precision="0" />
           <Property Name="Id_Restaurante_fk" Type="Int32" />
           <NavigationProperty Name="Restaurante" Relationship="Self.Id_restaurante_fk0" FromRole="Cardapio" ToRole="Restaurante" />
+          <Property Name="Dia_semana" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Empresa">
           <Key>
@@ -520,10 +473,10 @@ error 6004: The table 'Packed_Lunch_4_1.dbo.Faz_Convenio' is referenced by a rel
             <End Role="Restaurante" EntitySet="Restaurantes" />
           </AssociationSet>
           <FunctionImport Name="Select_empresa" ReturnType="Collection(Packed_Lunch_4_1Model.Select_empresa_Result)">
-            <Parameter Name="Id_empresa" Mode="In" Type="Int32" />
+          <Parameter Name="Id_empresa" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Select_pedidos_empresa" ReturnType="Collection(Packed_Lunch_4_1Model.Select_pedidos_empresa_Result)">
-            <Parameter Name="Id_empresa" Mode="In" Type="Int32" />
+          <Parameter Name="Id_empresa" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Select_empresa_Result">
@@ -548,6 +501,7 @@ error 6004: The table 'Packed_Lunch_4_1.dbo.Faz_Convenio' is referenced by a rel
           <EntitySetMapping Name="Cardapios">
             <EntityTypeMapping TypeName="Packed_Lunch_4_1Model.Cardapio">
               <MappingFragment StoreEntitySet="Cardapio">
+                <ScalarProperty Name="Dia_semana" ColumnName="Dia_semana" />
                 <ScalarProperty Name="Id_Cardapio" ColumnName="Id_Cardapio" />
                 <ScalarProperty Name="Data_Fim" ColumnName="Data_Fim" />
                 <ScalarProperty Name="Data_ini" ColumnName="Data_ini" />

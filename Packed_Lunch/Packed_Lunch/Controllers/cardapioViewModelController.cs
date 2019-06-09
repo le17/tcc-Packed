@@ -23,12 +23,11 @@ namespace Packed_Lunch.Controllers
                                        join prod in db.Produtoes on com.Id_Produto_fk equals prod.Id_Produto
                                        join rest in db.Restaurantes on car.Id_Restaurante_fk equals Session["IDRestaurante"]
                                        select new
-                                 {car.Data_ini,car.Data_Fim,car.Restaurante,prod.Nome,prod.Descricao,prod.Valor}).ToList();
+                                 {car.Dia_semana,car.Restaurante,prod.Nome,prod.Descricao,prod.Valor}).ToList();
             foreach (var item in CardapioRestaurante)
             {
                 cardapioViewModel cVM = new cardapioViewModel();
-                cVM.Data_ini = item.Data_ini;
-                cVM.Data_Fim = item.Data_Fim;
+                cVM.Dia_semana = item.Dia_semana;
                 cVM.Nome = item.Nome;
                 cVM.Descricao = item.Descricao;
                 cVM.Valor = item.Valor;
@@ -53,6 +52,7 @@ namespace Packed_Lunch.Controllers
         [HttpPost]
         public ActionResult Create(cardapioViewModel cardapioViewModel,Restaurante restaurante)
         {
+
             Cardapio car = new Cardapio();
             Compoem com = new Compoem();
             Produto prod = new Produto();
@@ -63,9 +63,8 @@ namespace Packed_Lunch.Controllers
             if (ModelState.IsValid)
             {
                 using (Packed_Lunch_4_1Entities db = new Packed_Lunch_4_1Entities())
-                {                  
-                    car.Data_ini = cardapioViewModel.Data_ini;
-                    car.Data_Fim = cardapioViewModel.Data_Fim;
+                {
+                    car.Dia_semana = cardapioViewModel.Dia_semana;
                     car.Id_Restaurante_fk =Convert.ToInt32 (id_logado);
                     db.Cardapios.Add(car);
                     db.SaveChanges();
@@ -87,9 +86,9 @@ namespace Packed_Lunch.Controllers
                         com.Id_Produto_fk = prod.Id_Produto;
                         db.Compoems.Add(com);
                         db.SaveChanges();
-                        return RedirectToAction("Details", "Restaurantes");
+                        
                     }
-
+                    return RedirectToAction("Details", "Restaurantes");
 
                 }
 
